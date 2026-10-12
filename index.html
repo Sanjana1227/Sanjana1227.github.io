@@ -3,30 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shopion | Product Details</title>
+  <title>E-commerce | Product Details</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --pink:#ff315b; --ink:#171717; --muted:#858585; --line:#e3e3e3; --surface:#fafafa; --coupon:#fff7df; }
+    :root { --pink:#ff315b; --ink:#24212a; --muted:#85818b; --line:#eee5ed; --surface:#fffdfd; --coupon:#fff7df; --soft-pink:#fff0f4; --soft-lilac:#f5f1ff; --soft-blue:#eff7ff; --soft-peach:#fff4eb; }
     * { box-sizing:border-box; }
-    body { margin:0; background:#f3f3f3; color:var(--ink); font-family:"Josefin Sans",sans-serif; }
+    body { margin:0; background:linear-gradient(135deg,#f9f3f8,#f2f5fb); color:var(--ink); font-family:"Josefin Sans",sans-serif; }
     button,input { font:inherit; }
     button { cursor:pointer; }
     .page { width:100%; max-width:520px; min-height:100vh; margin:0 auto; background:var(--surface); box-shadow:0 0 24px #0000000d; }
     .topbar { height:54px; display:flex; align-items:center; gap:12px; padding:0 15px; background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:5; }
     .back { border:0; background:transparent; font-size:27px; line-height:1; padding:0 3px; color:var(--ink); }
-    .brand { flex:1; font-weight:700; font-size:16px; }
-    .product-id { font-size:11px; color:#777; background:#f2f2f2; border-radius:4px; padding:6px 7px; white-space:nowrap; }
+    .brand { flex:1; font-weight:700; font-size:18px; letter-spacing:.2px; color:#29232e; }
     .header-icon { border:0; background:transparent; font-size:23px; padding:2px; color:#111; }
-    .hero { position:relative; background:#eee; aspect-ratio:3 / 4; min-height:340px; overflow:hidden; }
-    .hero-image { display:block; width:100%; height:shopion-product-details-index (3)100%; position:absolute; inset:0; object-fit:cover; background:#eee; }
-    .image-placeholder { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; color:#999; font-size:14px; pointer-events:none; background:linear-gradient(135deg,#f1f1f1,#e7e7e7); text-align:center; padding:20px; }
-    .image-placeholder::before { content:"▧"; font-size:42px; color:#c4c4c4; }
+    .hero { position:relative; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#fff1f5,#f3efff 55%,#edf6ff); aspect-ratio:3 / 4; min-height:340px; overflow:hidden; padding:24px; }
+    .hero-image { display:block; width:100%; height:100%; position:absolute; inset:0; object-fit:cover; background:#eee; }
+    .image-placeholder { position:absolute; inset:22px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:#716778; font-size:20px; font-weight:600; pointer-events:none; background:linear-gradient(135deg,#fffafd,#f8f3ff); border:1px dashed #dfcfe4; border-radius:16px; text-align:center; padding:20px; box-shadow:0 8px 24px #9c76a00c; }
+    .image-placeholder::before { content:"▧"; font-size:48px; color:#c5a9d0; }
     .placeholder-color { flex:0 0 82px; width:82px; }
-    .placeholder-color .color-swatch { display:flex; align-items:center; justify-content:center; border:1px dashed #cfcfcf; color:#aaa; font-size:22px; background:#f6f6f6; }
-    .placeholder-color .color-label { color:#888; }
-    .size-placeholder { border-style:dashed; color:#aaa; background:#fafafa; }
+    .placeholder-color .color-swatch { display:flex; align-items:center; justify-content:center; border:1px dashed #d9c7e0; color:#b49ac0; font-size:24px; background:linear-gradient(145deg,#fff5f8,#f4efff); }
+    .placeholder-color .color-label { color:#817487; }
+    .size-placeholder { border-style:dashed; color:#8b7894; background:linear-gradient(145deg,#fff5f8,#f4f0ff); border-color:#ddcfe4; }
     .rating { position:absolute; right:12px; bottom:12px; display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:4px; background:#fff; box-shadow:0 1px 8px #0001; font-family:Arial,sans-serif; font-size:11px; }
     .star { color:#f5b800; font-size:15px; }
     .image-dots { position:absolute; bottom:0; left:0; height:3px; width:100%; background:#ddd; }
@@ -53,19 +52,19 @@
     .coupon { display:inline-flex; border:1px solid #55c6ff; border-radius:3px; padding:5px 7px; color:#26a8ed; font-size:11px; background:#f0faff; }
     .copy { border:0; background:transparent; color:#777; font-size:10px; align-self:flex-end; padding:0; }
     .offer-terms { padding:9px 11px; background:#ffedbb; font-size:10px; line-height:1.4; }
-    .section { padding:20px 14px; background:#fff; border-top:1px solid var(--line); }
+    .section { padding:20px 14px; background:linear-gradient(135deg,#fff 0%,#fffaff 100%); border-top:1px solid var(--line); }
     .section-title { margin:0; font-size:16px; font-weight:700; }
     .color-list { display:flex; gap:10px; overflow-x:auto; padding:10px 0 0; scrollbar-width:none; }
     .color-list::-webkit-scrollbar { display:none; }
     .color-item { flex:0 0 82px; text-align:center; color:#555; font-size:13px; }
-    .color-swatch { width:82px; height:106px; border:1px solid transparent; border-radius:5px; background:#eee; overflow:hidden; }
+    .color-swatch { width:82px; height:106px; border:1px solid #eadfea; border-radius:9px; background:linear-gradient(145deg,#fff3f7,#f0edff); overflow:hidden; box-shadow:0 3px 10px #7e59820c; }
     .color-swatch img { width:100%; height:100%; object-fit:cover; }
     .color-item.active .color-swatch { border:1px solid var(--pink); }
     .color-label { display:block; margin-top:5px; }
     .size-head { display:flex; justify-content:space-between; align-items:center; }
     .size-guide { color:var(--pink); text-decoration:underline; font-size:14px; }
     .size-list { display:flex; gap:8px; overflow-x:auto; padding:17px 0 8px; scrollbar-width:none; }
-    .size-btn { min-width:43px; height:43px; padding:0 8px; border:1px solid #e6e6e6; border-radius:5px; background:#fff; font-size:13px; }
+    .size-btn { min-width:46px; height:45px; padding:0 8px; border:1px solid #e5d9e8; border-radius:8px; background:linear-gradient(145deg,#fff7fa,#f5f1ff); font-size:13px; box-shadow:0 2px 8px #75547b0b; }
     .size-btn.active { color:#fff; background:var(--pink); border-color:var(--pink); }
     .size-btn:disabled { background:#f3f3f3; color:#bbb; border-color:#f3f3f3; }
     .selected-size { margin:8px 0 0; font-size:12px; color:#666; }
@@ -75,8 +74,8 @@
     .bag-btn,.buy-btn { flex:1; min-height:48px; border-radius:5px; font-size:15px; font-weight:600; }
     .bag-btn { border:1px solid var(--pink); color:var(--pink); background:#fff; }
     .buy-btn { border:1px solid var(--pink); color:#fff; background:var(--pink); }
-    .delivery-section { padding:22px 14px 28px; border-top:1px solid var(--line); background:#fff; }
-    .pincode { display:flex; align-items:center; min-height:48px; padding:0 11px; margin-top:12px; background:#f0f0f0; border-radius:5px; gap:8px; }
+    .delivery-section { padding:22px 14px 28px; border-top:1px solid var(--line); background:linear-gradient(135deg,#fff,#f9f6ff); }
+    .pincode { display:flex; align-items:center; min-height:48px; padding:0 11px; margin-top:12px; background:#f7f2fa; border:1px solid #eee2f0; border-radius:8px; gap:8px; }
     .pincode input { flex:1; min-width:0; border:0; outline:none; background:transparent; font-size:15px; color:#222; }
     .pincode input::placeholder { color:#bcbcbc; }
     .check-pincode { border:0; padding:7px 0; background:transparent; color:var(--pink); font-size:15px; font-weight:700; white-space:nowrap; }
@@ -104,15 +103,14 @@
   <main class="page">
     <header class="topbar">
       <button class="back" id="back-button" aria-label="Go back">‹</button>
-      <div class="brand">Shopion</div>
-      <span class="product-id">Product ID: <strong id="header-product-id">—</strong></span>
+      <div class="brand">E-commerce</div>
       <button class="header-icon" aria-label="Search" id="search-button">⌕</button>
       <button class="header-icon" aria-label="Cart" id="cart-button">♧</button>
       <button class="header-icon" aria-label="Wishlist" id="header-wishlist">♡</button>
     </header>
 
     <section class="hero" aria-label="Product images">
-      <div class="image-placeholder" id="image-placeholder">Loading product image…</div>
+      <div class="image-placeholder" id="image-placeholder"><span id="image-product-id">Product ID: —</span><small style="font-size:12px;font-weight:400;color:#9a879f">Main product image space</small></div>
       <img id="product-image" class="hero-image" alt="Product image" hidden>
       <div class="rating" id="rating" hidden><span id="rating-value">4.5</span><span class="star">★</span><span>|</span><span id="review-count">130</span></div>
       <div class="image-dots"><span></span></div>
@@ -220,11 +218,23 @@
     const productId = params.get("productId") || params.get("id");
     const $ = (id) => document.getElementById(id);
 
-    $("header-product-id").textContent = productId || "Not provided";
-    $("product-name").textContent = "Product Name";
-    $("product-subtitle").textContent = "Product description will appear here";
-    $("sale-price").textContent = "₹ —";
-    $("image-placeholder").textContent = "Main product image space";
+    $("image-product-id").textContent = `Product ID: ${productId || "Not provided"}`;
+    $("product-name").textContent = "Classic Everyday Shirt";
+    $("product-subtitle").textContent = "Soft cotton blend · Regular fit";
+    $("sale-price").textContent = "₹1,499";
+    $("actual-price").textContent = "₹2,499";
+    $("actual-price").hidden = false;
+    $("discount").textContent = "40% OFF";
+    $("discount").hidden = false;
+    $("rating").hidden = false;
+    $("shop-to-look").hidden = false;
+    $("offer-card").hidden = false;
+    $("offer-title").textContent = "Special offer for you";
+    $("offer-description").textContent = "Save extra on your next purchase with this demo coupon.";
+    $("coupon-code").textContent = "STYLE10";
+    $("offer-terms").textContent = "Demo offer · Terms and conditions apply";
+
+    $("open-app").textContent = "CONTINUE SHOPPING";
     $("open-app").href = productId
       ? `${SITE_URL}?productId=${encodeURIComponent(productId)}`
       : SITE_URL;
